@@ -1,0 +1,59 @@
+{
+    "manifest_version": 3,
+    "name": "GuardianBit",
+    "version": "1.0",
+    "description": "Protejează-te de site-uri periculoase!",
+    "permissions": [
+        "storage", 
+        "unlimitedStorage",
+        "tabs",
+        "declarativeNetRequest",
+        "declarativeNetRequestWithHostAccess",
+        "declarativeNetRequestFeedback",
+        "activeTab",
+        "webNavigation",
+        "notifications",
+        "downloads",
+        "webRequest",
+        "webRequestBlocking",
+          "scripting"
+    ],
+    "host_permissions": ["<all_urls>"],
+    "background": {
+        "service_worker": "./javascript/background-wrapper.js"
+
+    },
+    "content_scripts": [
+      
+        {
+            "matches": ["<all_urls>"],
+            "js": ["javascript/content.js"],
+            "run_at": "document_start",
+            "all_frames": true
+},
+        {
+            "matches": ["https://www.google.com/search*"],
+            "js": ["./javascript/searchScanner.js"]
+          }
+    ],
+    "action": {
+        "default_popup": "./html/popup.html",
+        "default_icon": {
+            "8": "./icons/logo_8x8.png",
+            "16": "./icons/logo_16x16.png",
+            "48": "./icons/logo_48x48.png",
+            "128": "./icons/logo_128x128.png"
+        }
+    },
+    "web_accessible_resources": [
+        {
+            "resources": ["./html/blocked.html",
+                        "./html/scan-page.html",
+                        "./javascript/behavior-dashboard.js",
+                        "./javascript/dlp-dashboard.js"],
+
+                   
+            "matches": ["<all_urls>"]
+        }
+    ]
+}

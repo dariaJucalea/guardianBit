@@ -1,0 +1,1254 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #0A121A;
+    color: #ECEFF4;
+    padding: 0;
+    margin: 10px 10px 10px 10px;
+    width: 600px;
+    height: 550px;
+    box-sizing: border-box;
+}
+
+/* Stiluri generale */
+h2, h3 {
+    font-weight: 600;
+    margin-top: 0;
+}
+
+h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #2a2a2a;
+}
+
+h3 {
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: #ED7F10;
+}
+
+.container {
+    background: linear-gradient(135deg, #2A3E52, #1E2C3A);
+    padding: 20px;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    height: 510px;
+    width: 560px;
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="%23ffffff10" stroke-width="1"/></svg>');
+    opacity: 0.05;
+    z-index: 0;
+}
+
+.layout {
+    display: flex;
+    align-items: stretch;
+    height: 440px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Coloana de taburi */
+.tabs-column {
+    display: flex;
+    flex-direction: column;
+    width: 160px;
+    padding: 10px 10px 10px 0;
+    border-radius: 8px;
+    background: transparent;
+    height: 440px;
+}
+
+.tab {
+    background: none;
+    border: none;
+    color: #ECEFF4;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 12px 15px;
+    text-align: left;
+    transition: all 0.3s ease;
+    margin: 13px 0 13px 0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.tab::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #ED7F10;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.tab:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.tab:hover::before {
+    opacity: 0.5;
+}
+
+.tab.active {
+    font-weight: 600;
+    background: rgba(237, 127, 16, 0.15);
+    color: #ED7F10;
+    border-radius: 10px;
+    padding: 12px 15px;
+    box-shadow: 0 2px 8px rgba(237, 127, 16, 0.2);
+}
+
+.tab.active::before {
+    opacity: 1;
+}
+
+/* Coloana de conținut */
+.content-column {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 510px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.header-area {
+    background: linear-gradient(to right, #ED7F10, #F7A541);
+    color: #fff;
+    padding: 18px 20px;
+    border-radius: 10px 10px 0 0;
+    text-align: center;
+    position: relative;
+    z-index: 5;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header-area h2 {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 22px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.header-area img {
+    height: 1.2em;
+    width: auto;
+    margin-right: 8px;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+.tab-content-container {
+    flex-grow: 1;
+    background: #fff;
+    border-radius: 0 0 10px 10px;
+    color: #333;
+    overflow: hidden;
+    position: relative;
+}
+
+.tab-content {
+    display: none;
+    padding: 20px;
+    background: #fff;
+    border-radius: 0 0 10px 10px;
+    color: #333;
+    height: calc(100% - 40px);
+    max-width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.tab-content.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Scrollbar stilizat */
+.tab-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.tab-content::-webkit-scrollbar-thumb {
+    background: #CCD0D9;
+    border-radius: 10px;
+}
+
+.tab-content::-webkit-scrollbar-thumb:hover {
+    background: #9CA5B8;
+}
+
+/* Status cards */
+.status-card {
+    background: linear-gradient(135deg, #2A3E52, #1E2C3A);
+    color: #ECEFF4;
+    border-radius: 16px;
+    padding: 20px;
+    margin: 10px 0;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.status-card::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 30px;
+    height: 30px;
+    background: rgba(237, 127, 16, 0.1);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.status-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.status-card h3 {
+    margin: 0 0 12px;
+    font-size: 16px;
+    color: #ED7F10;
+    position: relative;
+    z-index: 1;
+}
+
+.status-value {
+    font-size: 20px;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* Switchuri de setări */
+.switch-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(42, 62, 82, 0.05);
+    padding: 15px;
+    border-radius: 12px;
+    margin: 12px 0;
+    transition: all 0.3s ease;
+}
+
+.switch-container:hover {
+    background: rgba(42, 62, 82, 0.1);
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Adaugă aceste stiluri la sfârșitul fișierului style.css existent */
+
+/* Behavior Tab Styles */
+.behavior-auth-warning,
+.behavior-error {
+    background: #FFF5F5;
+    border: 1px solid #FEB2B2;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.behavior-auth-warning h3,
+.behavior-error h3 {
+    color: #C53030;
+    margin-bottom: 10px;
+}
+
+.behavior-auth-warning p,
+.behavior-error p {
+    color: #744444;
+    margin: 8px 0;
+}
+
+.behavior-error button {
+    background: #C53030;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s ease;
+}
+
+.behavior-error button:hover {
+    background: #B91C1C;
+}
+
+/* Loading styles pentru behavior tab */
+.behavior-tab .loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    min-height: 200px;
+}
+
+.loading .spinner {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #ED7F10;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 15px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading p {
+    color: #4A5568;
+    font-size: 14px;
+}
+
+/* Behavior Dashboard Integration Styles */
+.behavior-dashboard {
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.behavior-dashboard h3 {
+    color: #ED7F10;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+/* Override pentru stilurile din behavior-dashboard.js */
+#behavior-tab .behavior-dashboard .stats-overview {
+    margin-bottom: 15px;
+}
+
+#behavior-tab .behavior-dashboard .overview-card {
+    background: #F7FAFC;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+}
+
+#behavior-tab .behavior-dashboard .overview-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 10px;
+}
+
+#behavior-tab .behavior-dashboard .stat-item {
+    text-align: center;
+}
+
+#behavior-tab .behavior-dashboard .stat-label {
+    display: block;
+    font-size: 11px;
+    color: #6c757d;
+    margin-bottom: 3px;
+}
+
+#behavior-tab .behavior-dashboard .stat-value {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* Responsive adjustments pentru behavior dashboard în popup */
+#behavior-tab .behavior-dashboard canvas {
+    max-width: 100%;
+    height: auto;
+}
+
+#behavior-tab .behavior-dashboard .behavior-controls {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+#behavior-tab .behavior-dashboard .btn {
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 4px;
+}
+
+/* Compact styles pentru heatmap în popup */
+#behavior-tab .hours-heatmap {
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1px;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+#behavior-tab .hour-block {
+    padding: 4px 2px;
+    font-size: 9px;
+    min-height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Stiluri pentru frequent sites în popup */
+#behavior-tab .frequent-sites {
+    max-height: 120px;
+    overflow-y: auto;
+}
+
+#behavior-tab .frequent-site {
+    padding: 6px 0;
+    font-size: 12px;
+}
+
+#behavior-tab .site-rank {
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+}
+
+/* Error handling pentru behaviour dashboard */
+.behavior-dashboard-error {
+    background: #FFF5F5;
+    border: 1px solid #FEB2B2;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    color: #C53030;
+}
+
+.behavior-dashboard-error h4 {
+    margin: 0 0 10px 0;
+    color: #C53030;
+}
+
+.behavior-dashboard-error p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+/* Override pentru scrollbar în behavior dashboard */
+.behavior-dashboard::-webkit-scrollbar {
+    width: 4px;
+}
+
+.behavior-dashboard::-webkit-scrollbar-thumb {
+    background: #CCD0D9;
+    border-radius: 10px;
+}
+
+.behavior-dashboard::-webkit-scrollbar-thumb:hover {
+    background: #9CA5B8;
+}
+
+/* Compact category list în popup */
+#behavior-tab .category-breakdown {
+    margin-bottom: 15px;
+}
+
+#behavior-tab .category-item {
+    padding: 6px 0;
+    font-size: 12px;
+    border-bottom: 1px solid #f1f3f4;
+}
+
+#behavior-tab .category-name {
+    font-size: 12px;
+}
+
+#behavior-tab .category-time,
+#behavior-tab .category-sites {
+    font-size: 11px;
+}
+
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #CBD5E0;
+    transition: 0.4s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+input:checked + .slider {
+    background-color: #ED7F10;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.protection-text {
+    font-size: 14px;
+    color: #4A5568;
+    margin: 0;
+    flex-grow: 1;
+}
+
+/* File list */
+.file-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.file-item {
+    background: #F7FAFC;
+    border-left: 3px solid #CBD5E0;
+    border-radius: 8px;
+    padding: 12px 15px;
+    margin: 8px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Stiluri pentru rezultatele scanării */
+.scan-result-card {
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    background: #F7FAFC;
+    border-left: 4px solid #38A169;
+  }
+  
+  .scan-result-card.danger {
+    border-left-color: #E53E3E;
+    background: #FFF5F5;
+  }
+  
+  .scan-result-card h4 {
+    margin-top: 0;
+    color: #2D3748;
+  }
+  
+  .scan-result-card p {
+    margin: 8px 0;
+  }
+  
+/* File item hover effect */
+.file-item.danger {
+    background: #FFF5F5;
+    border-left-color: #E53E3E;
+}
+
+.file-item.danger .file-name {
+    color: #E53E3E;
+}
+
+.tooltip-wrapper {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    z-index:1;
+  }
+  
+.tooltip {
+  visibility: hidden;
+  width: max-content;
+  max-width: 300px;
+  background-color: #2D3748 !important;
+  color: #ffffff !important;
+  text-align: left;
+  border-radius: 8px;
+  padding: 10px 12px;
+  position: absolute;
+  z-index: 99999;
+  opacity: 0;
+  transition: opacity 0.15s ease-in-out;
+  font-size: 0.85rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  white-space: pre-line;
+   outline: 2px solid orange !important; 
+}
+
+/* Adăugăm poziționare dinamică */
+.tooltip.top {
+  bottom: calc(100% + 5px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tooltip.bottom {
+  top: calc(100% + 5px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+  .tooltip-wrapper:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+.file-item.danger .file-status {
+    background: #FFF5F5;
+    color: #C53030;
+}
+/* File item hover effect */
+.file-item:hover {
+    border-left-color: #ED7F10;
+    background: #FFF5EB;
+    transform: translateX(3px);
+}
+
+.file-name {
+    font-weight: 600;
+    flex-grow: 1;
+    margin-right: 10px;
+    color: #2D3748;
+}
+
+.file-status {
+    font-size: 13px;
+    padding: 4px 8px;
+    border-radius: 12px;
+    background: #E6FFFA;
+    color: #2C7A7B;
+}
+
+.file-status:contains("⚠️") {
+    background: #FFF5F5;
+    color: #C53030;
+}
+
+.file-yara {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #718096;
+    padding: 6px;
+    background: #F7FAFC;
+    border-radius: 4px;
+    border-left: 2px solid #CBD5E0;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Upload container */
+.upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    background: linear-gradient(to bottom, #F7FAFC, #EDF2F7);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    margin-bottom: 15px;
+}
+
+#fileInput {
+    border: 2px dashed #CBD5E0;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#fileInput:hover {
+    border-color: #ED7F10;
+    background: #FFF5EB;
+}
+
+#uploadFileButton {
+    background: linear-gradient(to right, #ED7F10, #F7A541);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(237, 127, 16, 0.2);
+}
+
+#uploadFileButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(237, 127, 16, 0.3);
+}
+
+#uploadFileButton:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 3px rgba(237, 127, 16, 0.3);
+}
+
+/* Progress bar */
+progress {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+progress::-webkit-progress-bar {
+    background-color: #EDF2F7;
+    border-radius: 8px;
+}
+
+progress::-webkit-progress-value {
+    background: linear-gradient(to right, #ED7F10, #F7A541);
+    border-radius: 8px;
+    transition: width 0.3s ease;
+}
+
+.progress-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    margin: 20px auto;
+    position: relative;
+    background: 
+        radial-gradient(closest-side, white 79%, transparent 80% 100%),
+        conic-gradient(#ED7F10 calc(var(--progress-value) * 1%), #FFD6A5 0);
+    border-radius: 50%;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 8px 16px rgba(237, 127, 16, 0.15);
+}
+
+#progress-text {
+    position: absolute;
+    font-size: 24px;
+    font-weight: 700;
+    color: #2A3E52;
+}
+
+#progress-summary {
+    text-align: center;
+    margin: 15px 0;
+    font-size: 14px;
+    color: #4A5568;
+}
+
+/* Formulare autentificare */
+.auth-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+}
+
+.auth-toggle-button {
+    background-color: #EDF2F7;
+    color: #4A5568;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.auth-toggle-button:hover {
+    background-color: #E2E8F0;
+    color: #2D3748;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: #F7FAFC;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.auth-form input {
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 2px solid #E2E8F0;
+    background: #fff;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.auth-form input:focus {
+    border-color: #ED7F10;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(237, 127, 16, 0.1);
+}
+
+.auth-form button {
+    padding: 12px;
+    border: none;
+    background: linear-gradient(to right, #ED7F10, #F7A541);
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-top: 8px;
+    box-shadow: 0 4px 6px rgba(237, 127, 16, 0.15);
+}
+
+.auth-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(237, 127, 16, 0.25);
+}
+
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-wrapper input {
+    width: 100%;
+    padding-right: 40px;
+    box-sizing: border-box;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 16px;
+    color: #718096;
+    z-index: 2;
+    transition: color 0.3s ease;
+}
+
+.toggle-password:hover {
+    color: #ED7F10;
+}
+
+/* Butoane și avertismente */
+#report-site-button {
+    background: linear-gradient(to right, #ED7F10, #F7A541);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    margin: 10px auto;
+    display: block;
+    font-weight: 600;
+    box-shadow: 0 4px 6px rgba(237, 127, 16, 0.2);
+}
+
+#report-site-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(237, 127, 16, 0.3);
+}
+
+#report-warning {
+    background: #FFF5F5;
+    color: #C53030;
+    padding: 12px;
+    border-radius: 8px;
+    border-left: 4px solid #C53030;
+    margin: 10px 0;
+    font-weight: 500;
+}
+
+/* Animații */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tab-content.active {
+    animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(237, 127, 16, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(237, 127, 16, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(237, 127, 16, 0);
+    }
+}
+
+.status-card.danger {
+    animation: pulse 2s infinite;
+}
+
+/* User info */
+#user-info {
+    background: #F0FFF4;
+    border-left: 4px solid #38A169;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#loggedUser {
+    font-weight: 600;
+    color: #2F855A;
+}
+
+#logoutButton {
+    background: #E53E3E;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#logoutButton:hover {
+    background: #C53030;
+}
+
+
+/* Statistics Tab - Compact Design */
+#statistics-tab {
+    padding: 5px;
+    overflow: hidden;
+
+}
+
+#statistics-tab .centered-container {
+    display: grid;
+    grid-template-areas:
+        "progress progress"
+        "cards cards"
+        "sites sites";
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+/* Progress Bar - Compact Version */
+.progress-container {
+    grid-area: progress;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #F7FAFC;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.progress-bar {
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+}
+
+#progress-text {
+    font-size: 20px;
+}
+
+.progress-info {
+    flex: 1;
+}
+
+.progress-label {
+    font-size: 14px;
+    color: #ED7F10;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+#progress-summary {
+    font-size: 12px;
+    margin: 0;
+    color: #4A5568;
+    line-height: 1.4;
+}
+
+/* Statistics Cards - Compact Grid */
+.statistics-cards {
+    grid-area: cards;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.stats-card {
+    padding: 12px;
+    border-radius: 8px;
+    background: #F7FAFC;
+    text-align: center;
+}
+
+.stats-card h4 {
+    font-size: 11px;
+    margin: 0 0 5px 0;
+    color: #718096;
+}
+
+.stats-card span {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2A3E52;
+}
+
+#report-history-list {
+    max-height: 150px;
+    overflow-y: auto;
+    background: #F7FAFC;
+    padding: 10px 15px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.05);
+    margin-top: 10px;
+    font-size: 13px;
+    list-style: none;
+}
+.report-title {
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+
+#report-history-list li {
+    padding: 6px 0;
+    border-bottom: 1px solid #E2E8F0;
+    color: #2D3748;
+}
+
+#report-history-list li:last-child {
+    border-bottom: none;
+}
+
+.malicious-sites {
+    grid-area: sites;
+    background: #F7FAFC;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.malicious-sites h4 {
+    font-size: 13px;
+    margin: 0 0 8px 0;
+    color: #ED7F10;
+    text-align: center;
+}
+
+#malicious-sites-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+#malicious-sites-list li {
+    font-size: 10px;
+    padding: 6px 8px;
+    background: white;
+    border-radius: 4px;
+    word-break: break-all;
+    border-left: 2px solid #ED7F10;
+}
+
+/* Stiluri pentru tabul DLP */
+#dlp-tab .dlp-dashboard {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  color: #2D3748;
+}
+
+#dlp-tab h4 {
+  color: #ED7F10;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.dlp-stats-cards {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.dlp-stats-cards .stats-card {
+  background: #F7FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 16px;
+  flex: 1;
+  text-align: center;
+}
+
+.dlp-stats-cards .stat-number {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2B6CB0;
+}
+
+.dlp-config-section {
+  background: #EDF2F7;
+  border-radius: 12px;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.config-group {
+  margin-bottom: 16px;
+}
+
+.config-group label {
+  font-weight: 500;
+  color: #4A5568;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.config-group select,
+.config-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #CBD5E0;
+  border-radius: 6px;
+  background: #fff;
+  color: #2D3748;
+}
+
+.policy-toggles {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.toggle-switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.save-button {
+  background: #ED7F10;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.save-button:hover {
+  background: #C05600;
+}
+
+.dlp-recent-section {
+  margin-top: 25px;
+}
+
+.detection-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #F0FFF4;
+  border: 1px solid #C6F6D5;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.detection-type {
+  font-weight: 500;
+  color: #22543D;
+}
+
+.detection-count {
+  font-weight: 600;
+  color: #2F855A;
+}
