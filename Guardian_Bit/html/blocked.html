@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GuardianBit - Site blocat</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #0A121A;
+      font-family: 'Poppins', sans-serif;
+      color: #ECEFF4;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .block-container {
+      background: linear-gradient(135deg, #2A3E52, #1E2C3A);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(244, 67, 54, 0.25);
+      width: 500px;
+      text-align: center;
+    }
+
+    .block-container h1 {
+      font-size: 24px;
+      color: #F44336;
+      margin-bottom: 20px;
+    }
+
+    .blocked-url {
+      font-family: monospace;
+      background: #fff5f5;
+      color: #333;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 15px;
+      word-break: break-word;
+    }
+  </style>
+</head>
+<body>
+  <div class="block-container">
+    <h1>Acest site a fost detectat ca fiind malițios</h1>
+    <p>GuardianBit a blocat accesul pentru siguranța ta.</p>
+    <div class="blocked-url" id="blockedUrl">loading...</div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      chrome.storage.local.get('lastBlockedUrl', data => {
+        if (data.lastBlockedUrl) {
+          document.getElementById('blockedUrl').textContent = data.lastBlockedUrl;
+        } else {
+          document.getElementById('blockedUrl').textContent = "URL necunoscut";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
